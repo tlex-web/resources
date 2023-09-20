@@ -21,14 +21,15 @@ function init {
     $ps.BackgroundColor = "Black"
     $ps.ForegroundColor = "White"
     $ps.CursorSize = 10
-    $ps.WindowSize = New-Object System.Management.Automation.Host.Size(50,10)
-    $ps.WindowPosition = New-Object System.Management.Automation.Host.Coordinates(0,0)
+    $ps.WindowSize = New-Object System.Management.Automation.Host.Size(50, 10)
+    $ps.WindowPosition = New-Object System.Management.Automation.Host.Coordinates(0, 0)
 
     # remove default content
     Clear-Host
 
-    # set the default directory 
-    Set-Location C:\Programming\
+    # set the default directory to the directory where the terminal is opened or the programming directory
+    $wd = (Get-Location).Path
+    Set-Location $wd -or Set-Location C:\Programming
 
     # set the default prompt
     Write-Host "PowerShell Console `n" -ForegroundColor Green
@@ -49,6 +50,7 @@ init
 # load scripts 
 . C:\Scripts\google.ps1
 . C:\Scripts\week.ps1
+. C:\Scripts\filenames.ps1
 
 
 
